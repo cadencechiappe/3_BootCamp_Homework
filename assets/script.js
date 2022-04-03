@@ -64,6 +64,7 @@ function writePassword() {
     // temporary password generator from temporary password array
     var passwordSelected = arrayOfPasswords[Math.floor(Math.random()*arrayOfPasswords.length)];
     document.write(passwordSelected);
+    //find a way to put generated password in box not on new page
 
     // write conditional statements to propogate new password array
     // based on which boxes are selected
