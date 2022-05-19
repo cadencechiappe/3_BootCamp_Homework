@@ -11,6 +11,13 @@ var lowercaseLettersArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "
 var capitalLettersArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 var numbersArray = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 var specialCharactersArray = ["!", "%", "&"]
+// arrays that will be populated with random characters
+var lclarray = []
+var clarray = []
+var narray = []
+var scarray = []
+// array that will be populated with letters that will become the new password
+var randomCharArray = []
 // array that will be populated with new password
 var createdPassword = ["test"]
 
@@ -19,18 +26,29 @@ function getRandom(Array, num) {
     return shuffled.slice(0, num);
 }
 
-console.log(getRandom(lowercaseLettersArray, 5));
-console.log(getRandom(capitalLettersArray, 2));
-console.log(getRandom(numbersArray, 2));
-console.log(getRandom(specialCharactersArray, 1));
+//populate arrays with random characters
+lclarray = getRandom(lowercaseLettersArray, 5);
+clarray = getRandom(capitalLettersArray, 2);
+narray = getRandom(numbersArray, 2);
+scarray = getRandom(specialCharactersArray, 1);
 
+//combine arrays into randomCharArray
+randomCharArray = lclarray.concat(clarray, narray, scarray);
+
+// combine array indexes into one index in createdPassword
+const additionSpread = (...Array) => {
+    return Array.reduce((a, b) => a + b, 0);
+};
+
+//put combined password into array
+createdPassword = additionSpread(...randomCharArray);
 
 // get password length from user input
 var inputLengthValue = document.getElementById("lengthId").value;
 function saveBtnFunct() {
     console.log(inputLengthValue);
 }
-var body = document.body
+//use password length to change length of array created
 
 // find a way to only make modal appear when button is pressed
 
@@ -39,10 +57,7 @@ generateBtn.addEventListener('click', writePassword);
 
 // function that is run when event listener is triggered
 function writePassword() {
-    // temporary password generator from temporary password array
-    var passwordSelected = createdPassword[Math.floor(Math.random()*createdPassword.length)];
-    passwordDiv.replaceWith(passwordSelected);
-
+    passwordDiv.replaceWith(createdPassword);
     // write conditional statements to propogate new password array
     // based on which boxes are selected
 }
