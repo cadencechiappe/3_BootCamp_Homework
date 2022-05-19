@@ -12,6 +12,11 @@ body,
   padding: 0;
 }
 
+/* hides modal on page launch */
+.hide {
+  display: none
+}
+
 body {
   font-family: sans-serif;
   background-color: #f9fbfd;
